@@ -1,0 +1,102 @@
+
+### README for measurement-device backend ### 
+### http://2014.igem.org/Team:Aachen/Project/Measurement_Device ###
+
+### required installed libraries ###
+python, flask, python-serial
+
+(sudo apt-get install python
+ sudo apt-get install python-serial
+ sudo apt-get install python-flask)
+
+
+### how to start ##
+python takeimageserver.py
+
+
+### how to use ##
+
+-> is server running?
+/status?timestamp=1346274273
+#optional argument: timestamp = [unix timestamp] -> sets date on Raspberry Pi
+#output: status = ["running",error]
+#sample output: "running"
+
+
+-> take single image:
+/takeimage?name=1&led=480
+#arguments: name = [name of setting], led = [450, 480]
+#output = [filepath, error]
+#sample output: "image_timestamp_count_optionnumber.jpg"
+
+-> file exists?
+/fileexists?filepath=image_timestamp_count_optionnumber.jpg
+#arguments: filepath
+#output: [true,false]
+#sample output: "true"
+
+
+->download image
+/downloadimage?filepath=image_timestamp_count_optionnumber.jpg
+#arguments: filepath
+#output: [File to download,"wrong file extension","file doesnt exists"]
+#sample output: File to download
+
+
+-> start timelapse
+/timelapse/start?interval=5&name=1&led=480
+#arguments: interval = [5sec-3600sec], name = [name of setting], led = [450, 480]
+#output: ["thread started","wrong parameter 'interval'","error reading settings file","no setting with this name","no setting available"]
+#sample output: "thread started"
+
+
+-> get timelapse image names
+/timelapse/images
+#output: [image_timestamp_count_optionnumber.jpg,image_timestamp_count_optionnumber.jpg,...]
+#sample output: image_timestamp_count_optionnumber.jpg
+--> download with "download image"
+
+
+-> stop timelapse
+/timelapse/stop
+#output: ["thread stopped","no thread running"]
+#sample output: "thread stopped"
+
+
+-> timelapse status
+/timelapse/status
+#output: ["running","not running"]
+#sample output: "running"
+
+
+->get all saved settings
+/settings/all
+#output: [name;desc;parameter\nname;desc;parameter, "no settings", "error"]
+#sample output: 1;Desc1;-t 500 -ex night -awb off -ev 0 -ss 100000 -awbg 1.5,1.2 -ISO 100\n2;Desc2;-t 500 -ex night -awb off -ev 0 -ss 200000 -awbg 1.5,1.2 -ISO 100
+
+
+-> get single setting
+/settings/single?name=1
+#arguments: name = [name of setting]
+#output: [name;desc;parameter,"error reading settings file","no setting with this name"]
+sample output: 1;Desc1;-t 500 -ex night -awb off -ev 0 -ss 100000 -awbg 1.5,1.2 -ISO 100
+
+
+-> add new setting
+/settings/add?name=1&desc=First line##igem#is#great##second line of description&param=-t 500 -ex night -awb off -ev 0 -ss 100000 -awbg 1.5,1.2 -ISO 100
+#arguments: name = [name of setting], desc = [description of setting], param = [parameter of setting]
+#output: ["setting added","error reading settings file","already exists"]
+#sample output: "setting added"
+
+
+-> update existing setting
+/settings/update?name=1&desc=updated desc&param=-t 500 -ex night -awb off -ev 0 -ss 100000 -awbg 1.5,1.2 -ISO 100
+#arguments: name = [name of setting], desc = [description of setting], param = [parameter of setting]
+#output: ["setting updated","error reading settings file","setting not found","%s is read-only"]
+#sample output: "setting updated"
+
+
+-> delete setting
+/settings/delete?name=1
+#arguments: name = [name of setting]
+#output: ["setting deleted","error reading settings file","setting not found","%s is read-only"]

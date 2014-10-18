@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="SerialClientIcon.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#8a8a8a"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="3.959798"
+     inkscape:cx="351.454"
+     inkscape:cy="560.55977"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     borderlayer="true"
+     showborder="false"
+     inkscape:window-width="1280"
+     inkscape:window-height="737"
+     inkscape:window-x="-8"
+     inkscape:window-y="392"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid2989"
+       empspacing="5"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g3832"
+       inkscape:export-filename="C:\Users\Michael\Desktop\SerialClientIcon.png"
+       inkscape:export-xdpi="527.27002"
+       inkscape:export-ydpi="527.27002"
+       style="stroke:#0069b3">
+      <path
+         inkscape:export-ydpi="549.44012"
+         inkscape:export-xdpi="549.44012"
+         inkscape:export-filename="C:\Users\Michael\Desktop\SerialClientIcon.png"
+         transform="translate(4.2931563,0.25255373)"
+         d="m 364.41254,480.99466 a 39.522217,39.522217 0 1 1 -79.04444,0 39.522217,39.522217 0 1 1 79.04444,0 z"
+         sodipodi:ry="39.522217"
+         sodipodi:rx="39.522217"
+         sodipodi:cy="480.99466"
+         sodipodi:cx="324.89032"
+         id="path3808"
+         style="fill:#ffffff;fill-opacity:0.30319148000000001;stroke:#0069b3"
+         sodipodi:type="arc" />
+      <path
+         inkscape:export-ydpi="549.44012"
+         inkscape:export-xdpi="549.44012"
+         inkscape:export-filename="C:\Users\Michael\Desktop\SerialClientIcon.png"
+         inkscape:connector-curvature="0"
+         id="path2991"
+         d="m 289.18348,481.24721 80,0"
+         style="fill:none;stroke:#0069b3;stroke-width:2.59999989999999980;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2.59999989999999980, 2.59999989999999980;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="549.44012"
+         inkscape:export-xdpi="549.44012"
+         inkscape:export-filename="C:\Users\Michael\Desktop\SerialClientIcon.png"
+         sodipodi:nodetypes="czzzzzc"
+         inkscape:connector-curvature="0"
+         id="path2993"
+         d="m 293.05847,497.51779 c 9.28572,-37.5 10.7143,-51.07144 16.42858,-16.78572 5.71429,34.28571 7.14285,19.64286 12.14285,1.78572 5,-17.85714 9.81048,-9.98903 11.42858,9.64286 1.6181,19.63189 7.48409,-6.80488 7.5,-17.50001 0.0159,-10.69512 7.14285,-22.85713 9.99999,6.07144 2.85715,28.92856 9.10715,25.35714 18.75001,-7.50001"
+         style="fill:none;stroke:#0069b3;stroke-width:4.94000006000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+      <path
+         inkscape:export-ydpi="549.44012"
+         inkscape:export-xdpi="549.44012"
+         inkscape:export-filename="C:\Users\Michael\Desktop\SerialClientIcon.png"
+         transform="matrix(1.0300482,0,0,1.0300482,-5.469213,-14.20047)"
+         d="m 364.41254,480.99466 a 39.522217,39.522217 0 1 1 -79.04444,0 39.522217,39.522217 0 1 1 79.04444,0 z"
+         sodipodi:ry="39.522217"
+         sodipodi:rx="39.522217"
+         sodipodi:cy="480.99466"
+         sodipodi:cx="324.89032"
+         id="path3808-3"
+         style="fill:#000000;fill-opacity:0;stroke:#0069b3;stroke-width:5.82497012999999960;stroke-miterlimit:4;stroke-dasharray:none"
+         sodipodi:type="arc" />
+    </g>
+  </g>
+</svg>

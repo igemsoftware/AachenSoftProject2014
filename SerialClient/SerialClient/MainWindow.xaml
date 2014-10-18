@@ -1,0 +1,87 @@
+﻿<Window x:Class="SerialClient.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:chart="http://sparrowtoolkit.codeplex.com/wpf"
+        xmlns:tcd="clr-namespace:TCD.Controls;assembly=TCD.Controls"
+        xmlns:d3="http://research.microsoft.com/DynamicDataDisplay/1.0"
+        Title="Serial Client (CC-BY Michael Osthege, iGEM Team Aachen)" Height="620" Width="850" DataContext="{StaticResource ViewModel}" Icon="SerialClientIcon.ico">
+    
+    <Window.Resources>
+        <Style x:Key="SubtleTextBlockStyle" TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black" />
+            <Setter Property="FontSize" Value="10" />
+            <Setter Property="Margin" Value="0,5,0,0" />
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+    </Window.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="Auto" />
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <GroupBox Grid.Row="0" Header="Connection" DataContext="{StaticResource Serial}">
+                <StackPanel Margin="5,0">
+                    <TextBlock Text="Port" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="Auto" />
+                        </Grid.ColumnDefinitions>
+                        <ComboBox x:Name="portBox" Grid.Column="0" ItemsSource="{Binding PortNames}" SelectedIndex="{Binding SelectedPort, Mode=TwoWay}" />
+                        <Button Grid.Column="1" Content="&#xE117;" FontFamily="Segoe UI Symbol" Margin="5,0,0,0" Width="22" FontSize="11" Command="{Binding CommandRefreshPorts}" />
+                    </Grid>
+                    <TextBlock Text="Baud Rate" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <ComboBox x:Name="baudrateBox" SelectedItem="{Binding ActivePort.BaudRate, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=BaudRate}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="2" Header="Data Acquisition">
+                <StackPanel Margin="5,0">
+                    <TextBlock Text="Averaging" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <tcd:NumberOnlyTextBox Text="{Binding SensorDataCacheSize, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=StringVsInt}" />
+                    <TextBlock Text="{Binding SensorDataSet.Count, Converter={StaticResource UIConverter}, ConverterParameter=SensorDataSetCount}" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <Button Content="Reset" Command="{Binding CommandReset}" />
+                    <TextBlock Text="Export" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <ComboBox x:Name="copyOptionsBox" ItemsSource="{Binding CopyOptions}" SelectedItem="{Binding SelectedCopyOption, Mode=TwoWay}" />
+                    <Button Content="To clipboard" Command="{Binding CommandCopy}" />
+                    <TextBlock Text="Sample ID" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <TextBox Text="{Binding SampleID, Mode=TwoWay}" />
+                </StackPanel>
+            </GroupBox>
+            <GroupBox Grid.Row="3" Header="Data Interpretation">
+                <StackPanel Margin="5,10">
+                    <CheckBox Content="Map values" IsChecked="{Binding UseMappings, Mode=TwoWay}" />
+                    <TextBlock Text="Unit" Style="{StaticResource SubtleTextBlockStyle}" />
+                    <TextBox Text="{Binding Unit, Mode=TwoWay}" />
+                    <TextBlock Text="Map minimum of..." Style="{StaticResource SubtleTextBlockStyle}" />
+                    <tcd:NumberOnlyTextBox Text="{Binding MinimumValue, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=StringVsInt}" />
+                    <TextBlock Text="To..." Style="{StaticResource SubtleTextBlockStyle}" />
+                    <tcd:NumberOnlyTextBox Text="{Binding MinimumReadout, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=StringVsInt}" />
+                    <TextBlock Text="Map maximum of..." Style="{StaticResource SubtleTextBlockStyle}" />
+                    <tcd:NumberOnlyTextBox Text="{Binding MaximumValue, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=StringVsInt}" />
+                    <TextBlock Text="To..." Style="{StaticResource SubtleTextBlockStyle}" />
+                    <tcd:NumberOnlyTextBox Text="{Binding MaximumReadout, Mode=TwoWay, Converter={StaticResource UIConverter}, ConverterParameter=StringVsInt}" />
+                </StackPanel>
+            </GroupBox>
+        </Grid>
+
+        <d3:ChartPlotter x:Name="plotter" Grid.Column="1" LegendVisible="False" Margin="10">
+            <d3:ChartPlotter.HorizontalAxis>
+                <d3:HorizontalAxis x:Name="timeAxis" />
+            </d3:ChartPlotter.HorizontalAxis>
+            <d3:Header Content="Live Data"/>
+            <d3:HorizontalAxisTitle Content="time   [s]"/>
+            <d3:VerticalAxisTitle Content="{Binding UseMappings, Converter={StaticResource UIConverter}, ConverterParameter=VerticalAxisTitle}" />
+        </d3:ChartPlotter>
+
+    </Grid>
+</Window>

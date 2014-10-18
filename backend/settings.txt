@@ -1,0 +1,5 @@
+#name;desc;parameter
+1;No desc;-t 500 -ex night -awb off -ev 0 -ss 100000 -awbg 1.5,1.2 -ISO 100
+2;No desc;-t 500 -ex night -awb off -ev 0 -ss 200000 -awbg 1.5,1.2 -ISO 100
+3;No desc;-t 500 -ex night -awb off -ev 0 -ss 75000 -awbg 1.5,1.2 -ISO 100
+4;No desc;-t 500 -ex night -awb off -ev 0 -ss 300000 -awbg 1.5,1.2 -ISO 100
