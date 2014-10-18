@@ -1,0 +1,16 @@
+#
+# from http://2014.igem.org/Team:Aachen
+#
+
+WatsOn_GUI is the graphical user interface for our measurement device WatsOn.
+Detailed description of features and setup can be found at: http://2014.igem.org/Team:Aachen/Notebook/Engineering/WatsOn
+
+How to build/use WatsOn_GUI:
+
+-installed QT5 libraries required
+
+#build
+qmake
+make
+#run
+./watson_GUI
