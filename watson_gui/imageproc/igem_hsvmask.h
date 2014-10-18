@@ -61,7 +61,7 @@ private:
     {
         sHSV oReturn;
 
-        double mini, maxi, delta;
+        float mini, maxi, delta;
 
         float fR = qRed(oRgb) / 255.0f;
         float fG = qGreen(oRgb) / 255.0f;
@@ -85,21 +85,21 @@ private:
             return oReturn;
         }
 
-        if(qRed(oRgb) >= maxi){
+        if(fR >= maxi){
             oReturn.fH = (fG -fB) / delta;
         }
         else
         {
-            if(qGreen(oRgb) >= maxi){
-                oReturn.fH = 2.0 + (fB - fR) / delta;
+            if(fG >= maxi){
+                oReturn.fH = 2.0f + (fB - fR) / delta;
             }else{
-                oReturn.fH = 4.0 + (fR - fG) / delta;
+                oReturn.fH = 4.0f + (fR - fG) / delta;
             }
         }
 
-        oReturn.fH *= 60.0;
+        oReturn.fH *= 60.0f;
 
-        if(oReturn.fH < 0.0){
+        if(oReturn.fH < 0.0f){
             oReturn.fH += 360.0f;
         }        
 
@@ -141,13 +141,13 @@ channel2Max = 1.000;
 % Define thresholds for channel 3 based on histogram settings
 channel3Min = 0.25;
 channel3Max = 0.32;
-         *
+         * > 0.48 <0.5
          *
          * */
 
-        bool bFulfilled = (pHSV->fH >= 0.49f) && (pHSV->fH <= 0.55f);
+        bool bFulfilled = ((pHSV->fH >= 0.44f) && (pHSV->fH <= 0.53f));
         bFulfilled &= (pHSV->fS >= 0.99f) && (pHSV->fS <= 1.0f);
-        bFulfilled &= (pHSV->fV >= 0.26f) && (pHSV->fV <= 0.32f);
+        bFulfilled &= (pHSV->fV >= 0.25f) && (pHSV->fV <= 0.32f);
 
         return bFulfilled;
 

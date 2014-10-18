@@ -35,23 +35,6 @@ iGEM_AutoClassify::iGEM_AutoClassify()
             }
         }
 
-        QImage* pReturnImage = new QImage(*pInImage);
-
-        iIndex = 0;
-        for (size_t i = 0; i < x; ++i)
-        {
-            for (size_t j = 0; j < y; ++j)
-            {
-                QRgb oRgb = pImage[iIndex];
-
-                pReturnImage->setPixel(i,j, oRgb);
-
-                iIndex += 1;
-            }
-        }
-
-        return pReturnImage;
-
 
         // step 2 RGB to gray
         unsigned int* pGrayImage = this->toGray(pImage, x, y);
@@ -63,6 +46,8 @@ iGEM_AutoClassify::iGEM_AutoClassify()
         float* pFGrayImage = this->toFloat(pGrayImage, x, y);
 
         this->getGaussianBlur(pFGrayImage, x, y);
+        this->getGaussianBlur(pFGrayImage, x, y);
+        this->getGaussianBlur(pFGrayImage, x, y);
 
         float fBlurrMax = this->getMax(pFGrayImage, x, y);
         fFactor = 255.0f / fBlurrMax;
@@ -70,7 +55,7 @@ iGEM_AutoClassify::iGEM_AutoClassify()
 
         // step 4 calculate similarity score :D
 
-        unsigned int k = 2;
+        unsigned int k = 12;
 
         float* pSimilarity = this->similarity(pFGrayImage, x, y, k);
         float fSimMax = this->getMax(pSimilarity, x, y);
@@ -201,6 +186,12 @@ iGEM_AutoClassify::iGEM_AutoClassify()
             {
                 iIndex = i * y + j;
                 QRgb oRGB = (QRgb) pInImage[iIndex];
+
+                if (qGray(oRGB) > 255)
+                {
+                    std::cerr << "help" << std::endl;
+                }
+
                 pImage[iIndex] = qGray(oRGB);
             }
         }
@@ -235,7 +226,7 @@ iGEM_AutoClassify::iGEM_AutoClassify()
 
         size_t iXMax;
         size_t iYMax;
-        unsigned int iMax;
+        unsigned int iMax = 0;
 
         size_t iIndex = 0;
         unsigned int iValue = 0;
@@ -323,7 +314,7 @@ iGEM_AutoClassify::iGEM_AutoClassify()
     bool iGEM_AutoClassify::threshold(float fSim, unsigned int iGV)
     {
 //    cwseeds = ((sSI > 0.85) == 1) & ((Z > 235) == 1);
-        bool bFulfilled = (fSim > 0.55f) &&(iGV > 210); //(fSim > 0.85f) &&
+        bool bFulfilled = (fSim > 0.9f) &&(iGV > 220); //(fSim > 0.85f) &&
 
         return bFulfilled;
 
@@ -332,7 +323,7 @@ iGEM_AutoClassify::iGEM_AutoClassify()
     float* iGEM_AutoClassify::getGaussianBlur(float* pImage, size_t iX, size_t iY)
     {
 
-        int iWidth = 5;
+        int iWidth = 11;
         int iLeftRight = iWidth / 2;
         float *pKernel = (float*)calloc(sizeof(float), iWidth * iWidth);
         /*
@@ -365,7 +356,6 @@ iGEM_AutoClassify::iGEM_AutoClassify()
             for (int j = 0; j < iWidth; ++j)
             {
                 pKernel[i * iWidth + j] /= sum;
-                qDebug() << pKernel[i * iWidth + j] << "\n";
             }
 
 
